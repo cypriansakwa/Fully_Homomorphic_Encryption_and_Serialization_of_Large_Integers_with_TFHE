@@ -1,4 +1,4 @@
-This Rust program shows how to utilize the TFHE (Fast Fully Homomorphic Encryption over Torus) library to encrypt huge integers, produce pseudo-random numbers, and serialize the encrypted data for storage or transmission.
+This Rust program shows how to utilize the TFHE (Fast Fully Homomorphic Encryption over Torus) library to encrypt huge integers, produce pseudo-random numbers, and serialize the encrypted data for storage or transmission.  This is especially useful in situations when encrypted values must be securely processed without first being decrypted.
 ## Features
 - **Fully Homomorphic Encryption (FHE):** Encrypts data in such a way that it can be processed without needing to decrypt it, maintaining data privacy.
 - **Large Integer Encryption:** Supports encryption of large integers (e.g., u32).
@@ -30,6 +30,19 @@ tfhe = { version = "*", features = ["boolean", "shortint", "integer", "x86_64"] 
 #ensure to build cargo after adding the tfhe library
 cargo run build
 ```
+## Usage 
+- **Configure Encryption Parameters:** The program sets up encryption parameters optimized for large integers using ConfigBuilder.
+- **Generate Client and Server Keys:** Generates the keys needed for encryption and decryption.
+- **Set Server Key:** The server key is set to enable decryption on the server side.
+- **Encrypt a Large Integer:** Encrypts a large integer (u32) using the client's key.
+- **Generate Pseudo-Random Number (Optional):** Generates a pseudo-random number with a specified number of bits.
+- **Serialize Encrypted Data:** Safely serializes the ciphertext into a buffer, which can be used for storage or transmission.
+- **Complete the Process:** Prints the serialized ciphertext and indicates completion.
+## Customization
+- **Input Message:** Modify the input_message variable to encrypt different integers.
+- **Random Bits Count:** Change random_bits_count to generate a different number of pseudo-random bits.
+- **Buffer Size:** Adjust the buffer size in the safe_serialize function to accommodate larger or smaller serialized data.
+- If serialization fails, consider increasing the buffer size.
 ## Run code
 >[!TIP]
 > Performance: for optimal performance, it is highly recommended to run code that uses TFHE-rs in release mode with cargo's --release flag.
